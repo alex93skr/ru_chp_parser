@@ -1,1 +1,1 @@
-web: python3 flask_ru_chp.py
+web: python3 ru_chp.py
