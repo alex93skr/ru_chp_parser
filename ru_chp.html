@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ru chp comments parser</title>
+</head>
+<body>
+
+<center>
+<h1>Ru_chp parser by skr</h1>
+<div>
+  <form action="" method="post">
+	<select name="year">
+	{%- if appdata['request_year'] == None %}
+		<option selected disabled>Год</option>
+	{%- else %}
+		<option disabled>Год</option>
+	{%- endif %}
+	{%- for year in appdata['year_list'] %}
+		{%- if appdata['request_year'] == year %}
+		<option selected value="{{ year }}">{{ year }}</option>
+		{%- else %}
+		<option value="{{ year }}">{{ year }}</option>
+		{%- endif %}
+	{%- endfor %}
+    </select>
+
+	<select name="comm">
+	{%- if appdata['request_comm'] == None %}
+		<option selected disabled>Минимум комментариев</option>
+	{%- else %}
+		<option disabled>Минимум комментариев</option>
+	{%- endif %}
+	{%- for comm in appdata['comm_list'] %}
+		{%- if appdata['request_comm'] == comm %}
+		<option selected value="{{ comm }}">{{ comm }}</option>
+		{%- else %}
+		<option value="{{ comm }}">{{ comm }}</option>
+		{%- endif %}
+	{%- endfor %}
+	</select>
+   <input type="submit" value="Отправить"></p>
+  </form>
+  <div>
+  </center>
+
+{%- if appdata['request_year'] != None and appdata['request_comm'] != None %}
+
+{%- for t in threads %}
+	<h3>{{  t.title }}</h3>
+	{%- for com in t.arr %}
+		{{ com[0] }} comments - <a href=https://ru-chp.livejournal.com/{{ com[1] }}.html target=_blank>{{ com[2] }}</a></br>
+	{%- endfor %}
+{%- endfor %}
+
+<P>Сформировано за : {{ appdata['work_time'] }} sec</P>
+{%- endif %}
+
+</body>
+</html>
