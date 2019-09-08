@@ -14,14 +14,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__, template_folder='', static_folder='')
 
-appdata = {
-    'comm_list': [300, 200, 100, 50, 0],
-    'year_list': [n for n in range(2019, 2008, -1)],
-    'request_comm': None,
-    'request_year': None,
-    'work_time': 0
-}
-
 
 #############################################################
 
@@ -96,6 +88,14 @@ class Parser(threading.Thread):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    appdata = {
+        'comm_list': [300, 200, 100, 50, 0],
+        'year_list': [n for n in range(2019, 2008, -1)],
+        'request_comm': None,
+        'request_year': None,
+        'work_time': 0
+    }
+
     if request.method == 'GET':
         return render_template('ru_chp.html', appdata=appdata)
 
@@ -135,7 +135,8 @@ def index():
 #############################################################
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+    app.run()
+    # app.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
     # app.run(debug=True)
 
 #############################################################
