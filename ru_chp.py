@@ -45,7 +45,6 @@ class Parser(threading.Thread):
         self.url = f'https://ru-chp.livejournal.com/{str(self.year)}/{mon}'
 
     def parsing_html(self):
-        out_arr = []
         comm_arr = []
 
         r = requests.get(self.url)
@@ -135,8 +134,11 @@ def index():
 #############################################################
 
 if __name__ == "__main__":
+
+    if "HEROKU" in list(os.environ.keys()):
+        app.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+    else:
     # app.run()
-    app.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
-    # app.run(debug=True)
+        app.run(debug=True)
 
 #############################################################
