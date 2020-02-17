@@ -9,6 +9,8 @@
 import os
 import threading
 import time
+from datetime import datetime
+
 import requests
 from flask import Flask, render_template, request
 
@@ -89,7 +91,8 @@ class Parser(threading.Thread):
 def index():
     appdata = {
         'comm_list': [300, 200, 100, 50, 0],
-        'year_list': [n for n in range(2020, 2008, -1)],
+        # 'year_list': [n for n in range(2020, 2008, -1)],
+        'year_list': [n for n in range(datetime.now().year, 2008, -1)],
         'request_comm': None,
         'request_year': None,
         'work_time': 0
