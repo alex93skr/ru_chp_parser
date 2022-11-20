@@ -112,8 +112,8 @@ def index():
         except:
             pass
 
-        # print(appdata['request_year'])
-        # print(appdata['request_comm'])
+        # print(imdb_appdata['request_year'])
+        # print(imdb_appdata['request_comm'])
 
         threads = []
 
